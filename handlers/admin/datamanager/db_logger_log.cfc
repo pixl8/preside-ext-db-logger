@@ -50,4 +50,21 @@ component extends="preside.system.base.AdminHandler" {
 		return actions;
 	}
 
+	private string function getAdditionalQueryStringForBuildAjaxListingLink( event, rc, prc, args={} ) {
+		var category = rc.logCategory ?: ( prc.logCategory ?: "" );
+
+		return "category=#category#";
+	}
+
+	private void function preFetchRecordsForGridListing( event, rc, prc, args={} ) {
+		var category = rc.category ?: "";
+
+		if ( !IsEmpty( category ) ) {
+			args.extraFilters = args.extraFilters ?: [];
+
+			args.extraFilters.append( { filter={ category=category } } );
+		}
+
+	}
+
 }
