@@ -51,20 +51,40 @@ component extends="preside.system.base.AdminHandler" {
 	}
 
 	private string function getAdditionalQueryStringForBuildAjaxListingLink( event, rc, prc, args={} ) {
-		var category = rc.logCategory ?: ( prc.logCategory ?: "" );
+		var category     = rc.logCategory     ?: ( prc.logCategory     ?: "" );
+		var reference    = rc.logReference    ?: ( prc.logReference    ?: "" );
+		var subReference = rc.logSubReference ?: ( prc.logSubReference ?: "" );
+		var qs = "";
 
-		return "category=#category#";
+		if ( Len( Trim( category ) ) ) {
+			qs = "category=#category#"
+		}
+		if ( Len( Trim( reference ) ) ) {
+			qs = ListAppend( qs, "reference=#reference#", "&" )
+		}
+		if ( Len( Trim( subReference ) ) ) {
+			qs = ListAppend( qs, "subreference=#subReference#", "&" )
+		}
+
+		return qs;
 	}
 
 	private void function preFetchRecordsForGridListing( event, rc, prc, args={} ) {
-		var category = rc.category ?: "";
+		var category     = rc.category     ?: "";
+		var reference    = rc.reference    ?: "";
+		var subReference = rc.subReference ?: "";
+
+		args.extraFilters = args.extraFilters ?: [];
 
 		if ( !IsEmpty( category ) ) {
-			args.extraFilters = args.extraFilters ?: [];
-
 			args.extraFilters.append( { filter={ category=category } } );
 		}
-
+		if ( !IsEmpty( reference ) ) {
+			args.extraFilters.append( { filter={ reference=reference } } );
+		}
+		if ( !IsEmpty( subReference ) ) {
+			args.extraFilters.append( { filter={ sub_reference=subReference } } );
+		}
 	}
 
 }
