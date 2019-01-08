@@ -2,11 +2,11 @@ component {
 
 	property name="enum" inject="coldbox:setting:enum.dbLoggerSeverity";
 
-	public boolean function default( event, rc, prc, args={} ){
+	public string function default( event, rc, prc, args={} ){
 		return args.data ?: "";
 	}
 
-	public string function adminDatatable( event, rc, prc, args={} ){
+	public string function admin( event, rc, prc, args={} ){
 		var severity  = args.data ?: "";
 
 		if ( Len( Trim( severity ) ) && enum.find( UCase( severity ) ) ) {

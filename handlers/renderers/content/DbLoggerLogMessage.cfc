@@ -1,6 +1,6 @@
 component {
 
-	public boolean function default( event, rc, prc, args={} ){
+	public string function default( event, rc, prc, args={} ){
 		return args.data ?: "";
 	}
 
@@ -9,5 +9,4 @@ component {
 
 		return abbreviate( args.data, 120 );
 	}
-
 }

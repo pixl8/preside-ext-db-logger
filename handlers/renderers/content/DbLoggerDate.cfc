@@ -1,6 +1,6 @@
 component {
 
-	public boolean function default( event, rc, prc, args={} ){
+	public string function default( event, rc, prc, args={} ){
 		return runEvent(
 			  event          = "renderers.content.datetime.default"
 			, private        = true
@@ -9,7 +9,7 @@ component {
 		);
 	}
 
-	public string function adminDatatable( event, rc, prc, args={} ){
+	public string function admin( event, rc, prc, args={} ){
 		var logDate = args.data ?: "";
 
 		if ( IsDate( logDate ) ) {
