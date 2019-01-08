@@ -8,6 +8,7 @@
  * @datamanagerAllowedOperations read,view,list
  * @datamanagerGridFields        severity,datecreated,category,message
  * @datamanagerDefaultSortOrder  datecreated desc
+ * @dataExportFields             severity,datecreated,category,message,extra_info
  */
 component {
 	property name="datecreated" indexes="datecreated" renderer="dbLoggerDate";
