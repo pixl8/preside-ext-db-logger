@@ -30,7 +30,6 @@ component accessors=true extends="coldbox.system.logging.AbstractAppender" {
 		var dataToInsert = {
 			  severity   = severityToString( logEvent.getseverity() )
 			, category   = Left( category, 50 )
-			, appender   = Left( getName(), 50 )
 			, message    = logEvent.getMessage()
 			, extra_info = logEvent.getExtraInfoAsString()
 		};
