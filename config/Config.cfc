@@ -10,7 +10,7 @@ component {
 	}
 
 	private void function _configureEnums( settings ) {
-		settings.enum.dbloggerSeverity = [ "FATAL", "ERROR", "WARN", "INFO", "DEBUG" ]
+		settings.enum.dbLoggerSeverity = [ "FATAL", "ERROR", "WARN", "INFO", "DEBUG" ];
 	}
 
 	private void function _configureLogAppender( conf, settings ) {
