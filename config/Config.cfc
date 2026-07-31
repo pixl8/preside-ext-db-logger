@@ -7,6 +7,7 @@ component {
 		_configureEnums( settings );
 		_configureLogAppender( conf, settings );
 		_registerInterceptors( conf );
+		_setupAdminRolesAndPermissions( settings );
 	}
 
 	private void function _configureEnums( settings ) {
@@ -26,5 +27,10 @@ component {
 
 	private void function _registerInterceptors( conf ) {
 		conf.interceptors.append({ class="app.extensions.preside-ext-db-logger.interceptors.DbLoggerInterceptors", properties={} } );
+	}
+
+	private void function _setupAdminRolesAndPermissions( settings ) {
+		settings.adminPermissions.dbLoggerLogs = [ "access" ];
+		ArrayAppend( settings.adminRoles.sysadmin, "dbLoggerLogs.access" );
 	}
 }
