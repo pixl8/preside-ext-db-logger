@@ -46,6 +46,10 @@ component accessors=true extends="coldbox.system.logging.AbstractAppender" {
 	}
 
 	public void function rotationCheck(){
+		if ( !_isRotationEnabled() ) {
+			return;
+		}
+
 		var shouldRotate = !IsDate( lastDBRotation ) || DateDiff( "n", lastDBRotation, now() ) > getProperty( "rotationFrequency" );
 
 		if ( shouldRotate ) {
@@ -53,6 +57,16 @@ component accessors=true extends="coldbox.system.logging.AbstractAppender" {
 
 			lastDBRotation = now();
 		}
+	}
+
+	private boolean function _isRotationEnabled() {
+		var rotate = getProperty( "rotate" );
+
+		if ( !IsBoolean( rotate ) ) {
+			return true;
+		}
+
+		return !ListFindNoCase( "false,no,0", rotate );
 	}
 
 	public any function doRotation(){
