@@ -53,6 +53,8 @@ logbox.appenders.presideDbLogAppender.properties.rotationDays = 1;
 logbox.appenders.presideDbLogAppender.properties.rotationFrequency = 60; // minutes
 ```
 
+Set `rotate` to `false` to leave stored logs in place. Rotation is skipped entirely in that case.
+
 ## Using additional info in logs
 
 The log system allows you to pass `reference` and `sub_reference` fields through a struct sent as the `extraInfo` argument to any logger calls. These fields can then be filtered in log views. These can be useful for creating pre-filtered log views that are specific slices of your logs. For example:
